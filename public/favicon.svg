@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#161618" />
+      <stop offset="100%" stop-color="#080809" />
+    </linearGradient>
+    <filter id="dotGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="0" dy="0" stdDeviation="14" flood-color="#C8F04E" flood-opacity="0.5" />
+    </filter>
+  </defs>
+
+  <!-- Background squircle with macOS style rounded corners -->
+  <rect x="20" y="20" width="472" height="472" rx="116" fill="url(#bgGrad)" stroke="rgba(255, 255, 255, 0.14)" stroke-width="6" />
+  <rect x="26" y="26" width="460" height="460" rx="110" fill="none" stroke="rgba(255, 255, 255, 0.04)" stroke-width="2" />
+
+  <!-- Monogram Glyph Group -->
+  <g transform="translate(61.88, 307.96) scale(0.16238, -0.16238)">
+    <!-- Letter A -->
+    <path d="M234 97V247H918V97ZM10 0 439 640H717L1150 0H875L504 573H653L285 0Z" fill="#F2EFEB" />
+
+    <!-- Letter S -->
+    <g transform="translate(1120, 0)">
+      <path d="M35 235H308Q315 214 349.0 199.5Q383 185 440.5 177.5Q498 170 574 170Q649 170 692.5 174.5Q736 179 754.0 190.5Q772 202 772 222Q772 241 743.0 251.5Q714 262 640.0 266.0Q566 270 432 270Q332 270 259.5 279.5Q187 289 140.5 309.5Q94 330 72.0 361.5Q50 393 50 437Q50 513 101.5 562.5Q153 612 257.5 636.5Q362 661 519 661Q749 661 870.5 594.5Q992 528 992 403H733Q728 436 671.0 453.5Q614 471 509 471Q405 471 354.5 459.0Q304 447 304 418Q304 403 318.0 394.0Q332 385 366.5 379.5Q401 374 464.0 372.0Q527 370 624 370Q731 370 806.0 359.5Q881 349 927.5 328.0Q974 307 995.0 274.5Q1016 242 1016 198Q1016 122 968.0 74.0Q920 26 816.0 3.0Q712 -20 544 -20Q449 -20 369.5 -9.0Q290 2 228.0 23.5Q166 45 123.0 76.5Q80 108 57.5 147.5Q35 187 35 235Z" fill="#F2EFEB" />
+    </g>
+
+    <!-- Signature Accent Dot -->
+    <circle cx="2296" cy="75" r="85" fill="#C8F04E" filter="url(#dotGlow)" />
+  </g>
+</svg>

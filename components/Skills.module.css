@@ -1,0 +1,106 @@
+.skills {
+  padding: 6rem 4rem;
+  border-top: 1px solid var(--border);
+  background: var(--surface);
+}
+
+.inner {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 6rem;
+  align-items: start;
+}
+
+.heading {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 3.5vw, 2.8rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+
+.text {
+  font-size: 16px;
+  color: var(--text-muted);
+  line-height: 1.8;
+  margin-top: 1.5rem;
+}
+
+.skillsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.skillCard {
+  background: radial-gradient(circle at top right, rgba(200, 240, 78, 0.02), transparent 70%), var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 2rem;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+.skillCard:hover {
+  background: radial-gradient(circle at top right, rgba(200, 240, 78, 0.06), transparent 70%), var(--surface-2);
+  border-color: var(--border-hover);
+  transform: translateY(-2.5px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3), 0 0 20px rgba(200, 240, 78, 0.03);
+}
+
+.groupLabel {
+  font-size: 16px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 1.25rem;
+  font-weight: 600;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.pill {
+  padding: 10px 18px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--text-mid);
+  background: var(--surface);
+  transition: all 0.2s;
+  cursor: default;
+}
+
+.pill:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-dim);
+}
+
+.pill.featured {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-dim);
+}
+
+@media (max-width: 1024px) {
+  .skills { padding: 5rem 2rem; }
+  .inner { grid-template-columns: 1fr; gap: 3rem; }
+  .skillsGrid { grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
+}
+
+@media (max-width: 768px) {
+  .skillsGrid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 640px) {
+  .skills { padding: 4rem 1.5rem; }
+  .skillCard { padding: 1.5rem; }
+}

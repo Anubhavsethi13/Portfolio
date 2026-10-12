@@ -1,0 +1,81 @@
+.footer {
+  border-top: 1px solid var(--border);
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.marqueeContainer {
+  overflow: hidden;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 12px 0;
+  display: flex;
+  white-space: nowrap;
+}
+
+.marqueeTrack {
+  display: inline-flex;
+  animation: footerMarquee 45s linear infinite;
+  gap: 4rem;
+  padding-right: 4rem;
+}
+
+.marqueeTrack span {
+  font-size: 17px;
+  color: var(--text-mid);
+  letter-spacing: 0.05em;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+@keyframes footerMarquee {
+  0% { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(-50%, 0, 0); }
+}
+
+.bottomBar {
+  padding: 2rem 4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+}
+
+.copy {
+  font-size: 15px;
+  color: var(--text-muted);
+}
+
+.social {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.social a {
+  font-size: 15px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.2s;
+  cursor: none;
+}
+
+.social a:hover {
+  color: var(--text);
+}
+
+@media (max-width: 1024px) {
+  .bottomBar { padding: 2rem; }
+}
+
+@media (max-width: 640px) {
+  .bottomBar {
+    padding: 1.5rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+}

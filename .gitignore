@@ -1,0 +1,36 @@
+# Dependencies
+node_modules/
+/.pnp
+.pnp.js
+
+# Next.js
+/.next/
+/out/
+
+# Production
+/build
+
+# Local tooling and generated artifacts
+.agents/
+.impeccable/
+temp_impeccable/
+tmp/
+/test-results/
+/playwright-report/
+
+# Private résumé originals
+/resume/*.pdf
+/public/Anubhav_Sethi_Resume.pdf
+
+# Misc
+.DS_Store
+*.pem
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
