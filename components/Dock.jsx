@@ -77,27 +77,44 @@ export default function Dock({ openApps, activeApp, minimizedApps = [], onOpenAp
         boxShadow: 'var(--dock-shadow)',
       }}
     >
-      {apps.map((app) => {
+      {apps.map((app, index) => {
         const isRunning = openApps.includes(app.id);
         const isActive = activeApp === app.id;
         const isMinimized = minimizedApps.includes(app.id);
+        const isFirstLink = app.isLink && !apps[index - 1]?.isLink;
 
         return (
-          <DockIcon
-            key={app.id}
-            app={app}
-            mouseX={mouseX}
-            isRunning={isRunning}
-            isActive={isActive}
-            isMinimized={isMinimized}
-            onClick={() => {
-              if (app.isLink) {
-                window.open(app.url, '_blank');
-              } else {
-                onOpenApp(app.id);
-              }
-            }}
-          />
+          <React.Fragment key={app.id}>
+            {isFirstLink && (
+              <div
+                aria-hidden="true"
+                className="os-dock-separator"
+                style={{
+                  width: '1px',
+                  height: '38px',
+                  alignSelf: 'center',
+                  background: 'var(--dock-border)',
+                  margin: '0 4px',
+                  opacity: 0.75,
+                  borderRadius: '1px',
+                }}
+              />
+            )}
+            <DockIcon
+              app={app}
+              mouseX={mouseX}
+              isRunning={isRunning}
+              isActive={isActive}
+              isMinimized={isMinimized}
+              onClick={() => {
+                if (app.isLink) {
+                  window.open(app.url, '_blank');
+                } else {
+                  onOpenApp(app.id);
+                }
+              }}
+            />
+          </React.Fragment>
         );
       })}
     </div>
@@ -177,7 +194,8 @@ function DockIcon({ app, mouseX, isRunning, isActive, isMinimized, onClick }) {
           <div style={{
             position: 'absolute',
             inset: 0,
-            border: '1px solid rgba(200, 240, 78, 0.4)',
+            border: '1px solid var(--accent)',
+            boxShadow: '0 0 12px var(--accent-dim2)',
             borderRadius: '16px',
             pointerEvents: 'none',
           }} />
@@ -190,9 +208,9 @@ function DockIcon({ app, mouseX, isRunning, isActive, isMinimized, onClick }) {
               width: '4px',
               height: '4px',
               borderRadius: '50%',
-              background: '#C8F04E',
-              boxShadow: isMinimized ? 'none' : '0 0 6px #C8F04E',
-              opacity: isMinimized ? 0.3 : 1,
+              background: 'var(--accent)',
+              boxShadow: isMinimized ? 'none' : '0 0 6px var(--accent)',
+              opacity: isMinimized ? 0.35 : 1,
               position: 'absolute',
               bottom: '-8px',
               left: 'calc(50% - 2px)',
