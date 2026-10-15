@@ -1,5 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react';
+import Image from 'next/image';
 import { AnimatePresence, motion } from 'framer-motion';
+import { useTheme } from '../hooks/useTheme';
+import wallpaperDark from '../public/assets/macos/wallpaper-dark.webp';
+import wallpaperLight from '../public/assets/macos/wallpaper-light.webp';
 import Window from './Window';
 import Dock from './Dock';
 import DesktopScene from './DesktopScene';
@@ -27,6 +31,10 @@ export default function Desktop() {
 
   // Selected project for the ProjectsApp detail view
   const [selectedProject, setSelectedProject] = useState(null);
+
+  // Active theme (light/dark) for dynamic macOS wallpaper
+  const { theme } = useTheme();
+  const currentWallpaper = theme === 'light' ? wallpaperLight : wallpaperDark;
 
   const handleOpenApp = (id, tab) => {
     if (id === 'about' && tab) {
@@ -178,13 +186,20 @@ export default function Desktop() {
 
   return (
     <div ref={desktopRef} className="desktop-container">
-      {/* Blurred Wallpaper */}
+      {/* Dynamic Theme macOS Desktop Wallpaper */}
       <div className="desktop-bg" />
-      <img
-        src="/images/profile.jpg"
-        alt="Background Wallpaper"
-        className="desktop-wallpaper-img"
-      />
+      <div className="desktop-wallpaper-container">
+        <Image
+          src={currentWallpaper}
+          alt=""
+          aria-hidden="true"
+          fill
+          priority
+          sizes="100vw"
+          quality={90}
+          className="desktop-wallpaper-img"
+        />
+      </div>
       {/* Decorative 3D wallpaper layer (non-interactive) */}
       <DesktopScene />
       <div className="desktop-grid-overlay" />

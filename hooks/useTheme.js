@@ -5,11 +5,30 @@ export function useTheme() {
 
   useEffect(() => {
     // Use the saved preference; otherwise default to the signature dark macOS theme
-    // (intentionally regardless of the OS colour-scheme preference).
-    const saved = localStorage.getItem('theme');
+    const saved = typeof window !== 'undefined' ? localStorage.getItem('theme') : null;
     const initial = saved === 'light' || saved === 'dark' ? saved : 'dark';
     setTheme(initial);
     document.documentElement.setAttribute('data-theme', initial);
+
+    const handleThemeChange = (e) => {
+      if (e.detail?.theme) {
+        setTheme(e.detail.theme);
+      }
+    };
+
+    const handleStorageChange = (e) => {
+      if (e.key === 'theme' && (e.newValue === 'light' || e.newValue === 'dark')) {
+        setTheme(e.newValue);
+        document.documentElement.setAttribute('data-theme', e.newValue);
+      }
+    };
+
+    window.addEventListener('app-theme-change', handleThemeChange);
+    window.addEventListener('storage', handleStorageChange);
+    return () => {
+      window.removeEventListener('app-theme-change', handleThemeChange);
+      window.removeEventListener('storage', handleStorageChange);
+    };
   }, []);
 
   const toggleTheme = () => {
@@ -17,6 +36,7 @@ export function useTheme() {
     setTheme(next);
     localStorage.setItem('theme', next);
     document.documentElement.setAttribute('data-theme', next);
+    window.dispatchEvent(new CustomEvent('app-theme-change', { detail: { theme: next } }));
   };
 
   return { theme, toggleTheme };

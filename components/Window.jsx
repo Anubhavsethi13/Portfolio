@@ -83,8 +83,9 @@ export default function Window({
             }}
             className="os-window-control-btn os-window-control-close"
             title="Close"
+            aria-label="Close window"
           >
-            <svg className="os-window-control-icon" viewBox="0 0 12 12" width="12" height="12">
+            <svg className="os-window-control-icon" viewBox="0 0 12 12" width="12" height="12" aria-hidden="true">
               <path d="M3 3l6 6M9 3L3 9" stroke="#4c0002" strokeWidth="1.2" strokeLinecap="round" />
             </svg>
           </button>
@@ -95,8 +96,9 @@ export default function Window({
             }}
             className="os-window-control-btn os-window-control-minimize"
             title="Minimize"
+            aria-label="Minimize window"
           >
-            <svg className="os-window-control-icon" viewBox="0 0 12 12" width="12" height="12">
+            <svg className="os-window-control-icon" viewBox="0 0 12 12" width="12" height="12" aria-hidden="true">
               <path d="M2.5 6h7" stroke="#975700" strokeWidth="1.2" strokeLinecap="round" />
             </svg>
           </button>
@@ -107,8 +109,9 @@ export default function Window({
             }}
             className="os-window-control-btn os-window-control-maximize"
             title="Toggle Maximize"
+            aria-label="Toggle maximize window"
           >
-            <svg className="os-window-control-icon" viewBox="0 0 12 12" width="12" height="12">
+            <svg className="os-window-control-icon" viewBox="0 0 12 12" width="12" height="12" aria-hidden="true">
               <path d="M3 9h3.5L3 5.5V9zM9 3H5.5L9 6.5V3z" fill="#006500" />
             </svg>
           </button>
