@@ -1,68 +1,208 @@
-.nav {
+.menuBar {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  z-index: 100;
-  padding: 1.5rem 4rem;
+  height: 42px;
+  background: var(--glass-header);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid transparent;
-  transition: border-color 0.4s, background 0.4s, backdrop-filter 0.4s;
+  padding: 0 16px;
+  z-index: 1000;
+  font-family: var(--font-body);
+  transition: background 0.3s, border-color 0.3s;
 }
 
 .scrolled {
-  background: rgba(8, 8, 8, 0.85);
-  backdrop-filter: blur(20px);
-  border-color: var(--border);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.leftGroup {
+  display: flex;
+  align-items: center;
+  gap: 20px;
 }
 
 .logo {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: 25px;
-  letter-spacing: -0.02em;
+  font-size: 15px;
+  letter-spacing: -0.01em;
   color: var(--text);
   text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: opacity 0.2s;
+}
+
+.logo:hover {
+  opacity: 0.85;
+}
+
+.appleIcon {
+  font-size: 15px;
+  opacity: 0.9;
 }
 
 .logoAccent {
   color: var(--accent);
 }
 
-.links {
+.navLinks {
   display: flex;
-  gap: 2.5rem;
-  list-style: none;
+  align-items: center;
+  gap: 16px;
 }
 
-.links a {
-  color: var(--text-muted);
+.navItem {
+  color: var(--text-mid);
   text-decoration: none;
-  font-size: 17px;
-  font-weight: 400;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  transition: color 0.2s;
-  cursor: none;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 4px 8px;
+  border-radius: 6px;
+  transition: all 0.15s ease-in-out;
 }
 
-.links a:hover {
+.navItem:hover {
   color: var(--text);
+  background: var(--surface-2);
 }
 
-@media (max-width: 640px) {
-  .nav {
-    padding: 1.25rem 1.5rem;
-  }
-  .links {
+.rightGroup {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.menuClock {
+  font-family: monospace;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+}
+
+.clockTz {
+  color: var(--accent);
+  font-size: 10px;
+}
+
+.themeToggleBtn {
+  width: 28px;
+  height: 28px;
+  border-radius: 7px;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.themeToggleBtn:hover {
+  background: var(--border-hover);
+  color: var(--accent);
+}
+
+.resumeBtn {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  border-radius: 7px;
+  background: var(--accent);
+  color: #080808;
+  font-size: 12px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: filter 0.2s, transform 0.15s;
+}
+
+.resumeBtn:hover {
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+}
+
+.resumeArrow {
+  font-size: 11px;
+}
+
+.mobileMenuBtn {
+  display: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  color: var(--text);
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.mobileDrawer {
+  display: none;
+}
+
+@media (max-width: 860px) {
+  .navLinks {
     display: none;
   }
-}
 
-@media (max-width: 1024px) {
-  .nav {
-    padding: 1.5rem 2rem;
+  .mobileMenuBtn {
+    display: flex;
+  }
+
+  .mobileDrawer {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 42px;
+    left: 0;
+    right: 0;
+    background: var(--glass-header);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border-bottom: 1px solid var(--border);
+    padding: 12px 16px;
+    gap: 8px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  }
+
+  .mobileDrawerItem {
+    color: var(--text);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 8px 12px;
+    border-radius: 8px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+  }
+
+  .mobileDrawerResume {
+    color: #080808;
+    background: var(--accent);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 10px 12px;
+    border-radius: 8px;
+    text-align: center;
+    margin-top: 4px;
   }
 }

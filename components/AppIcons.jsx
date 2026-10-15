@@ -150,40 +150,6 @@ export function ContactIcon() {
   );
 }
 
-// 4. System Error App Icon
-export function ErrorIcon() {
-  return (
-    <svg viewBox="0 0 64 64" className="w-full h-full select-none" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <linearGradient id="errorBg" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#F87171" />
-          <stop offset="50%" stopColor="#DC2626" />
-          <stop offset="100%" stopColor="#991B1B" />
-        </linearGradient>
-        <linearGradient id="cautionBg" x1="0%" y1="0%" x2="0%" y2="100%">
-          <stop offset="0%" stopColor="#FCD34D" />
-          <stop offset="100%" stopColor="#F59E0B" />
-        </linearGradient>
-        <filter id="errorShadow" x="-20%" y="-20%" width="140%" height="140%">
-          <feDropShadow dx="0" dy="3" stdDeviation="2.5" floodColor="#000000" floodOpacity="0.3" />
-        </filter>
-      </defs>
-      {/* Base Squircle */}
-      <rect x="6" y="6" width="52" height="52" rx="14" fill="url(#errorBg)" stroke="rgba(255,255,255,0.25)" strokeWidth="1.2" filter="url(#errorShadow)" />
-      
-      {/* Glossy reflection */}
-      <path d="M 6,20 A 14,14 0 0,1 20,6 L 44,6 A 14,14 0 0,1 58,20 L 58,28 L 6,28 Z" fill="rgba(255, 255, 255, 0.15)" />
-      
-      {/* Caution Triangle */}
-      <path d="M 32,13 L 50,44 C 51,46 50,48 48,48 L 16,48 C 14,48 13,46 14,44 Z" fill="url(#cautionBg)" stroke="#D97706" strokeWidth="1.2" filter="url(#errorShadow)" />
-      
-      {/* Exclamation point */}
-      <rect x="30.5" y="24" width="3" height="11" rx="1.5" fill="#451A03" />
-      <circle cx="32" cy="41" r="2" fill="#451A03" />
-    </svg>
-  );
-}
-
 // 5. Trash Bin App Icon
 export function TrashIcon() {
   return (
@@ -299,3 +265,241 @@ export function LinkedInIcon() {
     </svg>
   );
 }
+
+// 8. OfficeFlow Suite App Icon
+export function OfficeFlowIcon() {
+  return (
+    <svg viewBox="0 0 64 64" className="w-full h-full select-none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="ofBg" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#38BDF8" />
+          <stop offset="50%" stopColor="#0284C7" />
+          <stop offset="100%" stopColor="#0369A1" />
+        </linearGradient>
+        <linearGradient id="ofGloss" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stopColor="#FFFFFF" stopOpacity="0.32" />
+          <stop offset="40%" stopColor="#FFFFFF" stopOpacity="0.08" />
+          <stop offset="100%" stopColor="#000000" stopOpacity="0.12" />
+        </linearGradient>
+        <linearGradient id="cardGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stopColor="#FFFFFF" />
+          <stop offset="100%" stopColor="#F0F9FF" />
+        </linearGradient>
+        <filter id="ofShadow" x="-20%" y="-20%" width="140%" height="140%">
+          <feDropShadow dx="0" dy="2.5" stdDeviation="2.5" floodColor="#000000" floodOpacity="0.32" />
+        </filter>
+      </defs>
+      <rect x="4" y="4" width="56" height="56" rx="14" fill="url(#ofBg)" stroke="rgba(255,255,255,0.25)" strokeWidth="1" filter="url(#ofShadow)" />
+      <rect x="4" y="4" width="56" height="56" rx="14" fill="url(#ofGloss)" />
+      <rect x="12" y="14" width="40" height="36" rx="5" fill="url(#cardGrad)" />
+      <path d="M 12,19 C 12,16.24 14.24,14 17,14 L 47,14 C 49.76,14 52,16.24 52,19 L 52,23 L 12,23 Z" fill="#0284C7" />
+      <circle cx="20" cy="18.5" r="1.8" fill="#FFFFFF" />
+      <circle cx="27" cy="18.5" r="1.8" fill="#FFFFFF" />
+      <rect x="17" y="27" width="8" height="7" rx="2" fill="#BAE6FD" />
+      <rect x="28" y="27" width="8" height="7" rx="2" fill="#0EA5E9" />
+      <rect x="39" y="27" width="8" height="7" rx="2" fill="#BAE6FD" />
+      <rect x="17" y="37" width="8" height="7" rx="2" fill="#0EA5E9" />
+      <rect x="28" y="37" width="8" height="7" rx="2" fill="#0369A1" />
+      <rect x="39" y="37" width="8" height="7" rx="2" fill="#38BDF8" />
+      <circle cx="44" cy="44" r="5.5" fill="#10B981" stroke="#FFFFFF" strokeWidth="1.5" />
+      <path d="M 42,44 L 43.5,45.5 L 46.5,42.5" fill="none" stroke="#FFFFFF" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+// 9. FitMart App Icon
+export function FitMartIcon() {
+  return (
+    <svg viewBox="0 0 64 64" className="w-full h-full select-none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="fitBg" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#FB7185" />
+          <stop offset="50%" stopColor="#E11D48" />
+          <stop offset="100%" stopColor="#9F1239" />
+        </linearGradient>
+        <linearGradient id="fitGloss" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stopColor="#FFFFFF" stopOpacity="0.32" />
+          <stop offset="40%" stopColor="#FFFFFF" stopOpacity="0.08" />
+          <stop offset="100%" stopColor="#000000" stopOpacity="0.12" />
+        </linearGradient>
+        <linearGradient id="metalChrome" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stopColor="#FFFFFF" />
+          <stop offset="50%" stopColor="#F1F5F9" />
+          <stop offset="100%" stopColor="#CBD5E1" />
+        </linearGradient>
+        <filter id="fitShadow" x="-20%" y="-20%" width="140%" height="140%">
+          <feDropShadow dx="0" dy="2.5" stdDeviation="2.5" floodColor="#000000" floodOpacity="0.32" />
+        </filter>
+      </defs>
+      <rect x="4" y="4" width="56" height="56" rx="14" fill="url(#fitBg)" stroke="rgba(255,255,255,0.25)" strokeWidth="1" filter="url(#fitShadow)" />
+      <rect x="4" y="4" width="56" height="56" rx="14" fill="url(#fitGloss)" />
+      <path d="M 23,26 C 23,17 41,17 41,26" fill="none" stroke="#FFFFFF" strokeWidth="2.8" strokeLinecap="round" />
+      <rect x="14" y="27" width="5.5" height="15" rx="2.5" fill="url(#metalChrome)" />
+      <rect x="44.5" y="27" width="5.5" height="15" rx="2.5" fill="url(#metalChrome)" />
+      <rect x="20.5" y="29" width="4.5" height="11" rx="2" fill="url(#metalChrome)" />
+      <rect x="39" y="29" width="4.5" height="11" rx="2" fill="url(#metalChrome)" />
+      <rect x="23" y="32.5" width="18" height="4" rx="2" fill="#FFFFFF" />
+      <circle cx="32" cy="46" r="3" fill="#FFE4E6" />
+      <circle cx="32" cy="46" r="1.5" fill="#E11D48" />
+    </svg>
+  );
+}
+
+// 10. FAQ-Assist AI Support App Icon
+export function FAQAssistIcon() {
+  return (
+    <svg viewBox="0 0 64 64" className="w-full h-full select-none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="faqBg" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#818CF8" />
+          <stop offset="50%" stopColor="#6366F1" />
+          <stop offset="100%" stopColor="#4338CA" />
+        </linearGradient>
+        <linearGradient id="faqGloss" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stopColor="#FFFFFF" stopOpacity="0.32" />
+          <stop offset="40%" stopColor="#FFFFFF" stopOpacity="0.08" />
+          <stop offset="100%" stopColor="#000000" stopOpacity="0.12" />
+        </linearGradient>
+        <linearGradient id="bubbleGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stopColor="#FFFFFF" />
+          <stop offset="100%" stopColor="#EEF2FF" />
+        </linearGradient>
+        <filter id="faqShadow" x="-20%" y="-20%" width="140%" height="140%">
+          <feDropShadow dx="0" dy="2.5" stdDeviation="2.5" floodColor="#000000" floodOpacity="0.32" />
+        </filter>
+      </defs>
+      <rect x="4" y="4" width="56" height="56" rx="14" fill="url(#faqBg)" stroke="rgba(255,255,255,0.25)" strokeWidth="1" filter="url(#faqShadow)" />
+      <rect x="4" y="4" width="56" height="56" rx="14" fill="url(#faqGloss)" />
+      <path d="M 24,17 L 46,17 C 50,17 53,20 53,24 L 53,32 C 53,36 50,39 46,39 L 42,39 L 38,44 L 38,39 L 24,39 C 20,39 17,36 17,32 L 17,24 C 17,20 20,17 24,17 Z" fill="rgba(255,255,255,0.3)" />
+      <path d="M 18,22 L 40,22 C 43.5,22 46,24.5 46,28 L 46,36 C 46,39.5 43.5,42 40,42 L 27,42 L 21,47 L 22,42 L 18,42 C 14.5,42 12,39.5 12,36 L 12,28 C 12,24.5 14.5,22 18,22 Z" fill="url(#bubbleGrad)" filter="url(#faqShadow)" />
+      <path d="M 29,26 C 29,29.5 31.5,32 35,32 C 31.5,32 29,34.5 29,38 C 29,34.5 26.5,32 23,32 C 26.5,32 29,29.5 29,26 Z" fill="#6366F1" />
+      <circle cx="38" cy="27" r="1.5" fill="#38BDF8" />
+      <circle cx="21" cy="36" r="1" fill="#818CF8" />
+    </svg>
+  );
+}
+
+// 11. Security Log Analyzer App Icon
+export function SecurityLogIcon() {
+  return (
+    <svg viewBox="0 0 64 64" className="w-full h-full select-none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="secBg" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#0EA5E9" />
+          <stop offset="50%" stopColor="#0284C7" />
+          <stop offset="100%" stopColor="#0F172A" />
+        </linearGradient>
+        <linearGradient id="secGloss" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stopColor="#FFFFFF" stopOpacity="0.32" />
+          <stop offset="40%" stopColor="#FFFFFF" stopOpacity="0.08" />
+          <stop offset="100%" stopColor="#000000" stopOpacity="0.12" />
+        </linearGradient>
+        <linearGradient id="shieldGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stopColor="#38BDF8" />
+          <stop offset="100%" stopColor="#0369A1" />
+        </linearGradient>
+        <filter id="secShadow" x="-20%" y="-20%" width="140%" height="140%">
+          <feDropShadow dx="0" dy="2.5" stdDeviation="2.5" floodColor="#000000" floodOpacity="0.32" />
+        </filter>
+      </defs>
+      <rect x="4" y="4" width="56" height="56" rx="14" fill="url(#secBg)" stroke="rgba(255,255,255,0.25)" strokeWidth="1" filter="url(#secShadow)" />
+      <rect x="4" y="4" width="56" height="56" rx="14" fill="url(#secGloss)" />
+      <path d="M 32,13 L 47,18 C 47,31 38,44 32,49 C 26,44 17,31 17,18 Z" fill="#FFFFFF" opacity="0.95" />
+      <path d="M 32,16 L 44,20 C 44,30.5 36.5,41.5 32,45.5 C 27.5,41.5 20,30.5 20,20 Z" fill="url(#shieldGrad)" />
+      <path d="M 27,25 L 30,28 L 27,31" fill="none" stroke="#E0F2FE" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      <line x1="32" y1="31" x2="37" y2="31" stroke="#38BDF8" strokeWidth="2" strokeLinecap="round" />
+      <rect x="28" y="34" width="8" height="6" rx="1.5" fill="#FFFFFF" />
+      <path d="M 29.5,34 L 29.5,32 C 29.5,30.6 30.6,29.5 32,29.5 C 33.4,29.5 34.5,30.6 34.5,32 L 34.5,34" fill="none" stroke="#FFFFFF" strokeWidth="1.5" />
+    </svg>
+  );
+}
+
+// 12. AI-Driven Accounting & Bookkeeping App Icon
+export function AccountingIcon() {
+  return (
+    <svg viewBox="0 0 64 64" className="w-full h-full select-none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="accBg" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#34D399" />
+          <stop offset="50%" stopColor="#059669" />
+          <stop offset="100%" stopColor="#064E3B" />
+        </linearGradient>
+        <linearGradient id="accGloss" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stopColor="#FFFFFF" stopOpacity="0.32" />
+          <stop offset="40%" stopColor="#FFFFFF" stopOpacity="0.08" />
+          <stop offset="100%" stopColor="#000000" stopOpacity="0.12" />
+        </linearGradient>
+        <linearGradient id="paperGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stopColor="#FFFFFF" />
+          <stop offset="100%" stopColor="#ECFDF5" />
+        </linearGradient>
+        <filter id="accShadow" x="-20%" y="-20%" width="140%" height="140%">
+          <feDropShadow dx="0" dy="2.5" stdDeviation="2.5" floodColor="#000000" floodOpacity="0.32" />
+        </filter>
+      </defs>
+      <rect x="4" y="4" width="56" height="56" rx="14" fill="url(#accBg)" stroke="rgba(255,255,255,0.25)" strokeWidth="1" filter="url(#accShadow)" />
+      <rect x="4" y="4" width="56" height="56" rx="14" fill="url(#accGloss)" />
+      <rect x="13" y="13" width="38" height="38" rx="4" fill="url(#paperGrad)" />
+      <line x1="18" y1="20" x2="32" y2="20" stroke="#059669" strokeWidth="2.2" strokeLinecap="round" />
+      <line x1="18" y1="25" x2="26" y2="25" stroke="#10B981" strokeWidth="1.6" strokeLinecap="round" />
+      <circle cx="41" cy="22" r="4.5" fill="#F59E0B" stroke="#D97706" strokeWidth="1" />
+      <text x="41" y="24.5" fill="#FFFFFF" fontSize="6" fontWeight="bold" textAnchor="middle" fontFamily="sans-serif">$</text>
+      <rect x="19" y="37" width="6" height="8" rx="1.5" fill="#A7F3D0" />
+      <rect x="29" y="33" width="6" height="12" rx="1.5" fill="#34D399" />
+      <rect x="39" y="29" width="6" height="16" rx="1.5" fill="#059669" />
+      <path d="M 22,35 L 32,30 L 42,26" fill="none" stroke="#047857" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+      <polyline points="39,26 42,26 42,29" fill="none" stroke="#047857" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+// 13. Personalized Study Material Generator App Icon
+export function StudyMaterialIcon() {
+  return (
+    <svg viewBox="0 0 64 64" className="w-full h-full select-none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="studyBg" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#FB923C" />
+          <stop offset="50%" stopColor="#EA580C" />
+          <stop offset="100%" stopColor="#9A3412" />
+        </linearGradient>
+        <linearGradient id="studyGloss" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stopColor="#FFFFFF" stopOpacity="0.32" />
+          <stop offset="40%" stopColor="#FFFFFF" stopOpacity="0.08" />
+          <stop offset="100%" stopColor="#000000" stopOpacity="0.12" />
+        </linearGradient>
+        <filter id="studyShadow" x="-20%" y="-20%" width="140%" height="140%">
+          <feDropShadow dx="0" dy="2.5" stdDeviation="2.5" floodColor="#000000" floodOpacity="0.32" />
+        </filter>
+      </defs>
+      <rect x="4" y="4" width="56" height="56" rx="14" fill="url(#studyBg)" stroke="rgba(255,255,255,0.25)" strokeWidth="1" filter="url(#studyShadow)" />
+      <rect x="4" y="4" width="56" height="56" rx="14" fill="url(#studyGloss)" />
+      <path d="M 32,36 C 37,33 46,33 49,35 L 49,49 C 46,47 37,47 32,50 C 27,47 18,47 15,49 L 15,35 C 18,33 27,33 32,36 Z" fill="#FFFFFF" />
+      <line x1="32" y1="36" x2="32" y2="50" stroke="#CBD5E1" strokeWidth="1.5" />
+      <line x1="20" y1="39" x2="28" y2="38" stroke="#94A3B8" strokeWidth="1.2" strokeLinecap="round" />
+      <line x1="20" y1="43" x2="27" y2="42" stroke="#CBD5E1" strokeWidth="1.2" strokeLinecap="round" />
+      <line x1="36" y1="38" x2="44" y2="39" stroke="#94A3B8" strokeWidth="1.2" strokeLinecap="round" />
+      <line x1="37" y1="42" x2="44" y2="43" stroke="#CBD5E1" strokeWidth="1.2" strokeLinecap="round" />
+      <circle cx="32" cy="22" r="7.5" fill="#FEF08A" stroke="#F59E0B" strokeWidth="1.2" />
+      <path d="M 29,27.5 L 35,27.5 L 34,30.5 L 30,30.5 Z" fill="#94A3B8" />
+      <path d="M 30,22 C 30,20.5 34,20.5 34,22" fill="none" stroke="#D97706" strokeWidth="1.2" strokeLinecap="round" />
+      <line x1="32" y1="11" x2="32" y2="13" stroke="#FEF08A" strokeWidth="1.8" strokeLinecap="round" />
+      <line x1="23" y1="15" x2="24.5" y2="16.5" stroke="#FEF08A" strokeWidth="1.8" strokeLinecap="round" />
+      <line x1="41" y1="15" x2="39.5" y2="16.5" stroke="#FEF08A" strokeWidth="1.8" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+// Project Icon Resolver Helper
+export function getProjectIcon(project) {
+  if (!project) return <ProjectsIcon />;
+  const title = (project.title || '').toLowerCase();
+  if (title.includes('officeflow')) return <OfficeFlowIcon />;
+  if (title.includes('fitmart')) return <FitMartIcon />;
+  if (title.includes('faq')) return <FAQAssistIcon />;
+  if (title.includes('security') || title.includes('log')) return <SecurityLogIcon />;
+  if (title.includes('accounting') || title.includes('bookkeeping') || title.includes('ledger')) return <AccountingIcon />;
+  if (title.includes('study') || title.includes('material')) return <StudyMaterialIcon />;
+  return <ProjectsIcon />;
+}
+

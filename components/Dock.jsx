@@ -4,11 +4,13 @@ import {
   AboutIcon,
   ProjectsIcon,
   ContactIcon,
-  ErrorIcon,
   TrashIcon,
   GitHubIcon,
   LinkedInIcon
 } from './AppIcons';
+import { socialLinks } from '../data/social';
+
+const socialUrl = (id) => socialLinks.find((link) => link.id === id).href;
 
 export default function Dock({ openApps, activeApp, minimizedApps = [], onOpenApp }) {
   const mouseX = useMotionValue(Infinity);
@@ -34,12 +36,6 @@ export default function Dock({ openApps, activeApp, minimizedApps = [], onOpenAp
       icon: <ContactIcon />,
     },
     {
-      id: 'error',
-      label: 'System Error',
-      color: 'bg-red-500/20 border-red-500/40',
-      icon: <ErrorIcon />,
-    },
-    {
       id: 'trash',
       label: 'Trash Bin',
       color: 'bg-gray-500/20 border-gray-500/40',
@@ -50,14 +46,14 @@ export default function Dock({ openApps, activeApp, minimizedApps = [], onOpenAp
       label: 'GitHub Profile',
       color: 'bg-zinc-800/50 border-zinc-700/60',
       isLink: true,
-      url: 'https://github.com/Anubhavsethi13',
+      url: socialUrl('github'),
       icon: <GitHubIcon />,
     },
     {
       id: 'linkedin',
       label: 'LinkedIn Profile',
       isLink: true,
-      url: 'https://linkedin.com',
+      url: socialUrl('linkedin'),
       icon: <LinkedInIcon />,
     },
   ];
@@ -73,11 +69,12 @@ export default function Dock({ openApps, activeApp, minimizedApps = [], onOpenAp
         alignItems: 'flex-end',
         gap: '12px',
         padding: '10px 18px',
-        background: 'rgba(20, 20, 22, 0.45)',
+        background: 'var(--dock-bg)',
         backdropFilter: 'blur(20px)',
-        border: '1px solid rgba(255, 255, 255, 0.08)',
+        WebkitBackdropFilter: 'blur(20px)',
+        border: '1px solid var(--dock-border)',
         borderRadius: '24px',
-        boxShadow: '0 15px 35px rgba(0, 0, 0, 0.4)',
+        boxShadow: 'var(--dock-shadow)',
       }}
     >
       {apps.map((app) => {
@@ -131,16 +128,18 @@ function DockIcon({ app, mouseX, isRunning, isActive, isMinimized, onClick }) {
           style={{
             position: 'absolute',
             bottom: '105px',
-            background: 'rgba(15, 15, 17, 0.85)',
-            backdropFilter: 'blur(8px)',
-            border: '1px solid rgba(255, 255, 255, 0.08)',
+            background: 'var(--surface)',
+            backdropFilter: 'blur(10px)',
+            WebkitBackdropFilter: 'blur(10px)',
+            border: '1px solid var(--border)',
             padding: '4px 10px',
             borderRadius: '8px',
             fontSize: '11px',
-            color: '#e4e4e7',
+            color: 'var(--text)',
             whiteSpace: 'nowrap',
             pointerEvents: 'none',
             zIndex: 1000,
+            boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
           }}
         >
           {app.label}

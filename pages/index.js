@@ -1,31 +1,33 @@
-import Head from 'next/head'
-import Cursor from '../components/Cursor'
-import Desktop from '../components/Desktop'
-import IntroLoader from '../components/IntroLoader'
+import React from 'react';
+import Head from 'next/head';
+import Navbar from '../components/Navbar';
+import Desktop from '../components/Desktop';
+import IntroLoader from '../components/IntroLoader';
+import { profile } from '../data/profile';
 
 export default function Home() {
   return (
     <>
       <Head>
-        <title>Anubhav Sethi — Web Developer & Graphics Designer</title>
-        <meta name="description" content="Portfolio of Anubhav Sethi — Web Developer & Graphics Designer engineering clean, performant apps and user experiences." />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta property="og:title" content="Anubhav Sethi — Web Developer & Graphics Designer" />
-        <meta property="og:description" content="Portfolio of Anubhav Sethi — Web Developer & Graphics Designer." />
-        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-        <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-        <link rel="manifest" href="/site.webmanifest" />
+        <title>{`${profile.name} — ${profile.headline}`}</title>
+        <meta name="description" content={`${profile.name} — Full-Stack Developer & Software Engineer. ${profile.tagline}`} />
+        <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1, user-scalable=no" />
+        <meta property="og:title" content={`${profile.name} — ${profile.headline}`} />
+        <meta property="og:description" content={profile.tagline} />
+        <meta property="og:type" content="website" />
+        {/* Favicons, apple-touch-icon and manifest are declared once in pages/_document.js */}
       </Head>
 
+      {/* MacBook Boot Screen Preloader */}
       <IntroLoader />
-      <Cursor />
 
-      <main>
+      {/* macOS Top Menu Bar */}
+      <Navbar />
+
+      <main style={{ width: '100vw', height: '100vh', overflow: 'hidden', position: 'fixed', inset: 0 }}>
+        {/* macOS Desktop Workspace (Interactive Desktop Icons, Windows & Dock) */}
         <Desktop />
       </main>
     </>
-  )
+  );
 }

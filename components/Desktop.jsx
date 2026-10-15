@@ -1,14 +1,14 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import Window from './Window';
 import Dock from './Dock';
+import DesktopScene from './DesktopScene';
 import AboutApp from './apps/AboutApp';
 import ProjectsApp from './apps/ProjectsApp';
 import ContactApp from './apps/ContactApp';
-import ErrorApp from './apps/ErrorApp';
 import TrashApp from './apps/TrashApp';
 import { projects } from '../data/projects';
-import { AboutIcon, ProjectsIcon, ContactIcon, TrashIcon } from './AppIcons';
+import { AboutIcon, ProjectsIcon, ContactIcon, TrashIcon, getProjectIcon } from './AppIcons';
 
 export default function Desktop() {
   const desktopRef = useRef(null);
@@ -20,12 +20,18 @@ export default function Desktop() {
   // Currently active app (highest z-index / focus)
   const [activeApp, setActiveApp] = useState('about');
   // Stacking order (last item is highest z-index)
-  const [appStack, setAppStack] = useState(['projects', 'contact', 'error', 'trash', 'about']);
+  const [appStack, setAppStack] = useState(['projects', 'contact', 'trash', 'about']);
   
+  // Active tab within AboutApp
+  const [aboutTab, setAboutTab] = useState('about');
+
   // Selected project for the ProjectsApp detail view
   const [selectedProject, setSelectedProject] = useState(null);
 
-  const handleOpenApp = (id) => {
+  const handleOpenApp = (id, tab) => {
+    if (id === 'about' && tab) {
+      setAboutTab(tab);
+    }
     if (!openApps.includes(id)) {
       setOpenApps((prev) => [...prev, id]);
     }
@@ -34,6 +40,47 @@ export default function Desktop() {
     // Focus app
     handleFocusApp(id);
   };
+
+  // Latest handler/state for the window-level listeners below, so they are registered
+  // once on mount instead of being removed and re-added on every state change.
+  const latestRef = useRef({ handleOpenApp, openApps });
+  useEffect(() => {
+    latestRef.current = { handleOpenApp, openApps };
+  });
+
+  useEffect(() => {
+    const handleOpenEvent = (e) => {
+      const { id, tab, project } = e.detail || {};
+      if (id === 'projects' && project) {
+        setSelectedProject(project);
+      }
+      if (id) {
+        latestRef.current.handleOpenApp(id, tab);
+      }
+    };
+
+    const handleShowDesktop = () => {
+      const { openApps } = latestRef.current;
+      // Minimize all open windows to reveal the clean home desktop
+      setMinimizedApps((prev) => {
+        const visibleApps = openApps.filter(id => !prev.includes(id));
+        if (visibleApps.length > 0) {
+          return [...openApps];
+        } else {
+          // If all already minimized, restore
+          return [];
+        }
+      });
+      setActiveApp(null);
+    };
+
+    window.addEventListener('open-mac-app', handleOpenEvent);
+    window.addEventListener('mac:show-desktop', handleShowDesktop);
+    return () => {
+      window.removeEventListener('open-mac-app', handleOpenEvent);
+      window.removeEventListener('mac:show-desktop', handleShowDesktop);
+    };
+  }, []);
 
   const handleCloseApp = (id) => {
     setOpenApps((prev) => prev.filter(appId => appId !== id));
@@ -130,7 +177,7 @@ export default function Desktop() {
   const featuredProjects = projects.filter(p => p.featured).slice(0, 3);
 
   return (
-    <div ref={desktopRef} className="desktop-container w-screen h-screen overflow-hidden">
+    <div ref={desktopRef} className="desktop-container">
       {/* Blurred Wallpaper */}
       <div className="desktop-bg" />
       <img
@@ -138,6 +185,8 @@ export default function Desktop() {
         alt="Background Wallpaper"
         className="desktop-wallpaper-img"
       />
+      {/* Decorative 3D wallpaper layer (non-interactive) */}
+      <DesktopScene />
       <div className="desktop-grid-overlay" />
 
       {/* Desktop Grid of Shortcut Icons */}
@@ -171,16 +220,8 @@ export default function Desktop() {
             className="desktop-shortcut"
             whileTap={{ scale: 0.95 }}
           >
-            <div className="shortcut-icon-wrapper">
-              <img
-                src={project.image}
-                alt={project.title}
-                className="shortcut-icon-img"
-                onError={(e) => {
-                  e.currentTarget.src = 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&auto=format&fit=crop&q=60';
-                }}
-              />
-              <div style={{ position: 'absolute', inset: 0, backgroundColor: 'rgba(23, 23, 23, 0.1)' }} />
+            <div className="shortcut-icon-wrapper" style={{ background: 'none', border: 'none', boxShadow: 'none' }}>
+              {getProjectIcon(project)}
             </div>
             <span className="shortcut-label">
               {project.title.split(' ')[0]}
@@ -208,7 +249,7 @@ export default function Desktop() {
             title = 'Information about: Anubhav Sethi';
             width = 720;
             height = 540;
-            content = <AboutApp />;
+            content = <AboutApp selectedTab={aboutTab} onTabChange={setAboutTab} />;
             defaultX = 100;
             defaultY = 60;
           } else if (appId === 'projects') {
@@ -230,13 +271,6 @@ export default function Desktop() {
             content = <ContactApp />;
             defaultX = 260;
             defaultY = 120;
-          } else if (appId === 'error') {
-            title = 'System Warning';
-            width = 440;
-            height = 300;
-            content = <ErrorApp onClose={() => handleCloseApp('error')} />;
-            defaultX = 350;
-            defaultY = 180;
           } else if (appId === 'trash') {
             title = 'Trash Bin: Playground';
             width = 620;

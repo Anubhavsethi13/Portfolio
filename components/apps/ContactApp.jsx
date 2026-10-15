@@ -1,4 +1,15 @@
 import React, { useState } from 'react';
+import { socialLinks as allSocialLinks } from '../../data/social';
+
+const findSocial = (id) => allSocialLinks.find((link) => link.id === id);
+const contactEmail = findSocial('email').handle;
+
+// Order and short badge text are specific to this window.
+const socialLinks = [
+  { label: 'LinkedIn', icon: 'in', href: findSocial('linkedin').href },
+  { label: 'Behance', icon: 'Be', href: findSocial('behance').href },
+  { label: 'GitHub', icon: 'GH', href: findSocial('github').href },
+];
 
 export default function ContactApp() {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
@@ -11,19 +22,13 @@ export default function ContactApp() {
     // Construct mailto link
     const subject = encodeURIComponent(`Portfolio Inquiry from ${name}`);
     const body = encodeURIComponent(`${message}\n\nSender Email: ${email}`);
-    const mailtoUrl = `mailto:aanubhavsethi2405@gmail.com?subject=${subject}&body=${body}`;
+    const mailtoUrl = `mailto:${contactEmail}?subject=${subject}&body=${body}`;
     
     // Trigger redirect
     window.location.href = mailtoUrl;
     
     setSubmitted(true);
   };
-
-  const socialLinks = [
-    { label: 'LinkedIn', icon: 'in', href: 'https://www.linkedin.com/in/anubhav-sethi13/' },
-    { label: 'Behance', icon: 'Be', href: 'https://www.behance.net/anubhavsethi1' },
-    { label: 'GitHub', icon: 'GH', href: 'https://github.com/Anubhavsethi13' },
-  ];
 
   return (
     <div className="contact-layout">
@@ -32,7 +37,7 @@ export default function ContactApp() {
           New Message
         </h2>
         <p className="contact-to-field">
-          To: aanubhavsethi2405@gmail.com
+          To: {contactEmail}
         </p>
       </div>
 
@@ -66,7 +71,7 @@ export default function ContactApp() {
               value={formData.name}
               onChange={(e) => setFormData({ ...formData, name: e.target.value })}
               className="contact-input"
-              placeholder="John Doe"
+              placeholder="Anubhav Sethi"
             />
           </div>
 
@@ -78,7 +83,7 @@ export default function ContactApp() {
               value={formData.email}
               onChange={(e) => setFormData({ ...formData, email: e.target.value })}
               className="contact-input"
-              placeholder="john@example.com"
+              placeholder="aanubhavsethi2405@gmail.com"
             />
           </div>
 

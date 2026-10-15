@@ -1,0 +1,39 @@
+<svg viewBox="0 0 64 64" width="64" height="64" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="secBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stopColor="#0EA5E9" />
+      <stop offset="50%" stopColor="#0284C7" />
+      <stop offset="100%" stopColor="#0F172A" />
+    </linearGradient>
+    <linearGradient id="secGloss" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stopColor="#FFFFFF" stopOpacity="0.32" />
+      <stop offset="40%" stopColor="#FFFFFF" stopOpacity="0.08" />
+      <stop offset="100%" stopColor="#000000" stopOpacity="0.12" />
+    </linearGradient>
+    <linearGradient id="shieldGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stopColor="#38BDF8" />
+      <stop offset="100%" stopColor="#0369A1" />
+    </linearGradient>
+    <filter id="secShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="2.5" stdDeviation="2.5" floodColor="#000000" floodOpacity="0.32" />
+    </filter>
+  </defs>
+
+  <!-- Base Squircle -->
+  <rect x="4" y="4" width="56" height="56" rx="14" fill="url(#secBg)" stroke="rgba(255,255,255,0.25)" strokeWidth="1" filter="url(#secShadow)" />
+  <rect x="4" y="4" width="56" height="56" rx="14" fill="url(#secGloss)" />
+
+  <!-- Security Shield Outer -->
+  <path d="M 32,13 L 47,18 C 47,31 38,44 32,49 C 26,44 17,31 17,18 Z" fill="#FFFFFF" opacity="0.95" />
+  
+  <!-- Security Shield Inner -->
+  <path d="M 32,16 L 44,20 C 44,30.5 36.5,41.5 32,45.5 C 27.5,41.5 20,30.5 20,20 Z" fill="url(#shieldGrad)" />
+
+  <!-- Security Log Prompt & Keyhole / Checkmark -->
+  <path d="M 27,25 L 30,28 L 27,31" fill="none" stroke="#E0F2FE" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+  <line x1="32" y1="31" x2="37" y2="31" stroke="#38BDF8" strokeWidth="2" strokeLinecap="round" />
+  
+  <!-- Lock Core -->
+  <rect x="28" y="34" width="8" height="6" rx="1.5" fill="#FFFFFF" />
+  <path d="M 29.5,34 L 29.5,32 C 29.5,30.6 30.6,29.5 32,29.5 C 33.4,29.5 34.5,30.6 34.5,32 L 34.5,34" fill="none" stroke="#FFFFFF" strokeWidth="1.5" />
+</svg>

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap');
+/* Syne + DM Sans are loaded once, via the <link> in pages/_document.js. */
 
 *, *::before, *::after {
   box-sizing: border-box;
@@ -6,32 +6,79 @@
   padding: 0;
 }
 
-:root {
+:root,
+[data-theme="dark"] {
   --bg: #080808;
-  --surface: #111111;
-  --surface-2: #181818;
-  --border: rgba(255, 255, 255, 0.06);
-  --border-hover: rgba(255, 255, 255, 0.14);
+  --surface: #121214;
+  --surface-2: #1a1a1d;
+  --surface-card: rgba(22, 22, 26, 0.75);
+  --border: rgba(255, 255, 255, 0.08);
+  --border-hover: rgba(255, 255, 255, 0.18);
   --text: #F0EEE8;
-  --text-muted: #6B6960;
+  --text-muted: #8c8c93;
   --text-mid: #A09A90;
   --accent: #C8F04E;
+  --accent-contrast: #080808;
   --accent-dim: rgba(200, 240, 78, 0.08);
-  --accent-dim2: rgba(200, 240, 78, 0.14);
+  --accent-dim2: rgba(200, 240, 78, 0.16);
+  --glass-bg: rgba(18, 18, 22, 0.72);
+  --glass-header: rgba(18, 18, 22, 0.88);
+  --window-shadow: 0 25px 65px rgba(0, 0, 0, 0.65), 0 0 1px rgba(255, 255, 255, 0.15) inset;
+  --dock-bg: rgba(20, 20, 24, 0.55);
+  --dock-border: rgba(255, 255, 255, 0.12);
+  --dock-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
   --font-display: 'Syne', sans-serif;
   --font-body: 'DM Sans', sans-serif;
+  --wallpaper-filter: blur(35px) brightness(0.35) contrast(1.1);
 }
 
-html, body {
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
+[data-theme="light"] {
+  --bg: #F4F4F6;
+  --surface: #FFFFFF;
+  --surface-2: #EAEAEF;
+  --surface-card: rgba(255, 255, 255, 0.9);
+  --border: rgba(0, 0, 0, 0.09);
+  --border-hover: rgba(0, 0, 0, 0.2);
+  --text: #161618;
+  --text-muted: #646468;
+  --text-mid: #444448;
+  --accent: #2E6800;
+  --accent-contrast: #FFFFFF;
+  --accent-dim: rgba(46, 104, 0, 0.08);
+  --accent-dim2: rgba(46, 104, 0, 0.16);
+  --glass-bg: rgba(255, 255, 255, 0.82);
+  --glass-header: rgba(245, 245, 247, 0.94);
+  --window-shadow: 0 20px 45px rgba(0, 0, 0, 0.1), 0 0 1px rgba(0, 0, 0, 0.08) inset;
+  --dock-bg: rgba(255, 255, 255, 0.75);
+  --dock-border: rgba(0, 0, 0, 0.12);
+  --dock-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+  --font-display: 'Syne', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
+  --wallpaper-filter: blur(40px) brightness(0.95) contrast(0.9);
+}
+
+html {
+  scroll-behavior: smooth;
+  height: 100%;
+}
+
+body {
+  width: 100%;
+  height: 100%;
   background: var(--bg);
   color: var(--text);
   font-family: var(--font-body);
-  font-size: 18px;
-  line-height: 1.5;
-  user-select: none;
+  font-size: 16px;
+  line-height: 1.6;
+  user-select: auto;
+}
+
+body:has(.desktop-container) {
+  overflow: hidden;
+  height: 100vh;
+  height: 100dvh;
+  position: fixed;
+  inset: 0;
 }
 
 /* Custom cursor default fallback */
@@ -66,9 +113,11 @@ body {
 .desktop-container {
   position: relative;
   width: 100vw;
-  height: 100vh;
+  height: calc(100vh - 42px);
+  height: calc(100dvh - 42px);
   overflow: hidden;
   z-index: 10;
+  margin-top: 42px;
 }
 
 .desktop-bg {
@@ -76,7 +125,7 @@ body {
   inset: 0;
   width: 100%;
   height: 100%;
-  background-image: radial-gradient(circle at center, #161618 0%, #09090b 100%);
+  background: var(--bg);
   background-size: cover;
   background-position: center;
   z-index: -2;
@@ -88,7 +137,7 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: blur(35px) brightness(0.35) contrast(1.1);
+  filter: var(--wallpaper-filter);
   transform: scale(1.1);
   opacity: 0.85;
   z-index: -1;
@@ -107,23 +156,23 @@ body {
 /* Draggable Windows Styles */
 .os-window {
   position: absolute;
-  background: rgba(13, 13, 14, 0.82);
+  background: var(--glass-bg);
   backdrop-filter: blur(24px) saturate(120%);
   -webkit-backdrop-filter: blur(24px) saturate(120%);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--border);
   border-radius: 14px;
-  box-shadow: 0 25px 65px rgba(0, 0, 0, 0.65), 0 0 1px rgba(255, 255, 255, 0.15) inset;
+  box-shadow: var(--window-shadow);
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  color: #f3f4f6;
+  color: var(--text);
   z-index: 10;
 }
 
 .os-window-header {
   height: 40px;
-  background: rgba(22, 22, 24, 0.6);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  background: var(--surface-2);
+  border-bottom: 1px solid var(--border);
   display: flex;
   align-items: center;
   padding: 0 16px;
@@ -357,7 +406,7 @@ body {
   align-items: flex-start;
   justify-content: flex-start;
   gap: 32px 48px;
-  max-h: 80vh;
+  max-height: 80vh;
   z-index: 10;
   pointer-events: none;
 }
@@ -408,6 +457,7 @@ body {
   white-space: normal;
   display: -webkit-box;
   -webkit-line-clamp: 2;
+  line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -459,7 +509,7 @@ body {
 .about-sidebar {
   width: 25%;
   padding-right: 16px;
-  border-right: 1px solid rgba(255, 255, 255, 0.06);
+  border-right: 1px solid var(--border);
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -486,8 +536,8 @@ body {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 16px;
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
   padding: 16px 0;
 }
 
@@ -499,7 +549,7 @@ body {
 
 .stat-label {
   font-size: 11px;
-  color: #6b7280;
+  color: var(--text-muted);
   font-weight: 500;
 }
 
@@ -510,8 +560,8 @@ body {
 }
 
 .philosophy-card {
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
   border-radius: 8px;
   padding: 12px;
   display: flex;
@@ -521,7 +571,7 @@ body {
 
 .philosophy-num {
   font-size: 10px;
-  color: #4b5563;
+  color: var(--accent);
   font-family: monospace;
   font-weight: 700;
 }
@@ -529,12 +579,12 @@ body {
 .philosophy-title {
   font-size: 12px;
   font-weight: 600;
-  color: #d1d5db;
+  color: var(--text);
 }
 
 .philosophy-desc {
   font-size: 11px;
-  color: #6b7280;
+  color: var(--text-muted);
   line-height: 1.4;
 }
 
@@ -543,7 +593,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 16px;
-  border-left: 1px solid rgba(255, 255, 255, 0.05);
+  border-left: 1px solid var(--border);
   padding-left: 16px;
   margin-left: 8px;
 }
@@ -560,25 +610,25 @@ body {
   height: 10px;
   border-radius: 50%;
   background: var(--accent);
-  border: 2px solid #0d0d0e;
+  border: 2px solid var(--surface);
 }
 
 .timeline-date {
   font-size: 10px;
-  color: #6b7280;
+  color: var(--accent);
   font-family: monospace;
 }
 
 .timeline-role {
   font-size: 14px;
   font-weight: 600;
-  color: #e5e7eb;
+  color: var(--text);
   margin-top: 2px;
 }
 
 .timeline-company {
   font-size: 12px;
-  color: #9ca3af;
+  color: var(--text-mid);
   font-weight: 500;
 }
 
@@ -587,7 +637,7 @@ body {
   padding-left: 16px;
   margin-top: 8px;
   font-size: 12px;
-  color: #6b7280;
+  color: var(--text);
   display: flex;
   flex-direction: column;
   gap: 4px;
@@ -844,7 +894,7 @@ body {
 .project-card-title {
   font-size: 14px;
   font-weight: 600;
-  color: #ffffff;
+  color: var(--text);
   transition: color 0.2s ease;
   white-space: nowrap;
   overflow: hidden;
@@ -857,10 +907,11 @@ body {
 
 .project-card-desc {
   font-size: 11px;
-  color: #6b7280;
+  color: var(--text-mid);
   line-height: 1.5;
   display: -webkit-box;
   -webkit-line-clamp: 2;
+  line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
@@ -875,9 +926,10 @@ body {
 .project-card-tag {
   font-size: 9px;
   padding: 2px 6px;
-  background: rgba(255, 255, 255, 0.03);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
   border-radius: 4px;
-  color: #9ca3af;
+  color: var(--text-mid);
 }
 
 /* Project Detail View */
@@ -1036,17 +1088,17 @@ svg.h-12 { height: 48px !important; width: 48px !important; }
 .contact-title {
   font-size: 20px;
   font-weight: 700;
-  color: #ffffff;
+  color: var(--text);
 }
 
 .contact-to-field {
   font-size: 12px;
-  color: #6b7280;
+  color: var(--text-muted);
 }
 
 .contact-success-card {
-  background: rgba(200, 240, 78, 0.05);
-  border: 1px solid rgba(200, 240, 78, 0.2);
+  background: var(--accent-dim);
+  border: 1px solid var(--border);
   border-radius: 12px;
   padding: 24px;
   text-align: center;
@@ -1059,12 +1111,12 @@ svg.h-12 { height: 48px !important; width: 48px !important; }
 .contact-success-title {
   font-size: 14px;
   font-weight: 600;
-  color: #ffffff;
+  color: var(--text);
 }
 
 .contact-success-desc {
   font-size: 12px;
-  color: #9ca3af;
+  color: var(--text-mid);
   max-width: 384px;
   line-height: 1.5;
 }
@@ -1097,25 +1149,25 @@ svg.h-12 { height: 48px !important; width: 48px !important; }
 .contact-label {
   font-size: 11px;
   font-weight: 600;
-  color: #4b5563;
+  color: var(--text-mid);
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
 
 .contact-input, .contact-textarea {
-  background: #18181c;
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
   border-radius: 12px;
   padding: 10px 16px;
   font-size: 14px;
-  color: #ffffff;
+  color: var(--text);
   outline: none;
   font-family: var(--font-body);
   transition: border-color 0.2s ease;
 }
 
 .contact-input:focus, .contact-textarea:focus {
-  border-color: rgba(200, 240, 78, 0.5);
+  border-color: var(--accent);
 }
 
 .contact-textarea {
@@ -1125,8 +1177,8 @@ svg.h-12 { height: 48px !important; width: 48px !important; }
 
 .contact-submit-btn {
   background: var(--accent);
-  color: #080808;
-  font-weight: 600;
+  color: var(--accent-contrast);
+  font-weight: 700;
   font-size: 12px;
   padding: 12px 24px;
   border-radius: 12px;
@@ -1137,15 +1189,15 @@ svg.h-12 { height: 48px !important; width: 48px !important; }
   justify-content: center;
   gap: 8px;
   margin-top: 8px;
-  transition: background-color 0.2s ease;
+  transition: filter 0.2s ease;
 }
 
 .contact-submit-btn:hover {
-  background-color: #b0d641;
+  filter: brightness(1.1);
 }
 
 .contact-socials-section {
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  border-top: 1px solid var(--border);
   padding-top: 16px;
   display: flex;
   flex-direction: column;
@@ -1155,7 +1207,7 @@ svg.h-12 { height: 48px !important; width: 48px !important; }
 .contact-socials-title {
   font-size: 11px;
   font-weight: 600;
-  color: #4b5563;
+  color: var(--text-muted);
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
@@ -1163,24 +1215,25 @@ svg.h-12 { height: 48px !important; width: 48px !important; }
 .contact-socials-row {
   display: flex;
   gap: 8px;
+  flex-wrap: wrap;
 }
 
 .contact-social-link {
   display: flex;
   align-items: center;
   gap: 8px;
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
   border-radius: 12px;
   padding: 8px 16px;
   font-size: 12px;
-  color: #d1d5db;
+  color: var(--text);
   text-decoration: none;
   transition: background-color 0.2s ease;
 }
 
 .contact-social-link:hover {
-  background: rgba(255, 255, 255, 0.06);
+  background: var(--border-hover);
 }
 
 .contact-social-icon {
@@ -1314,7 +1367,7 @@ svg.h-12 { height: 48px !important; width: 48px !important; }
   .about-sidebar {
     width: 100%;
     border-right: none;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    border-bottom: 1px solid var(--border);
     padding-right: 0;
     padding-bottom: 16px;
     margin-bottom: 16px;
@@ -1327,14 +1380,40 @@ svg.h-12 { height: 48px !important; width: 48px !important; }
   .project-detail-grid {
     grid-template-columns: 1fr;
   }
+  .os-window {
+    max-width: calc(100vw - 16px) !important;
+    left: 8px !important;
+  }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 640px) {
   .projects-grid,
   .trash-grid,
   .trash-viewer-box {
     max-height: none !important;
     overflow-y: visible !important;
+  }
+  .os-dock-container {
+    gap: 6px !important;
+    padding: 6px 10px !important;
+    max-width: calc(100vw - 20px) !important;
+    overflow-x: auto !important;
+  }
+  .desktop-scroll-hint {
+    display: none !important;
+  }
+  .desktop-grid {
+    gap: 16px 20px !important;
+  }
+}
+
+/* Accessibility: Respect Reduced Motion Preference */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
 

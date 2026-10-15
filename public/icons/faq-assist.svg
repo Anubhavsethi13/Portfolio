@@ -1,0 +1,36 @@
+<svg viewBox="0 0 64 64" width="64" height="64" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="faqBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stopColor="#818CF8" />
+      <stop offset="50%" stopColor="#6366F1" />
+      <stop offset="100%" stopColor="#4338CA" />
+    </linearGradient>
+    <linearGradient id="faqGloss" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stopColor="#FFFFFF" stopOpacity="0.32" />
+      <stop offset="40%" stopColor="#FFFFFF" stopOpacity="0.08" />
+      <stop offset="100%" stopColor="#000000" stopOpacity="0.12" />
+    </linearGradient>
+    <linearGradient id="bubbleGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stopColor="#FFFFFF" />
+      <stop offset="100%" stopColor="#EEF2FF" />
+    </linearGradient>
+    <filter id="faqShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="2.5" stdDeviation="2.5" floodColor="#000000" floodOpacity="0.32" />
+    </filter>
+  </defs>
+
+  <!-- Base Squircle -->
+  <rect x="4" y="4" width="56" height="56" rx="14" fill="url(#faqBg)" stroke="rgba(255,255,255,0.25)" strokeWidth="1" filter="url(#faqShadow)" />
+  <rect x="4" y="4" width="56" height="56" rx="14" fill="url(#faqGloss)" />
+
+  <!-- Back Speech Bubble -->
+  <path d="M 24,17 L 46,17 C 50,17 53,20 53,24 L 53,32 C 53,36 50,39 46,39 L 42,39 L 38,44 L 38,39 L 24,39 C 20,39 17,36 17,32 L 17,24 C 17,20 20,17 24,17 Z" fill="rgba(255,255,255,0.3)" />
+
+  <!-- Front Speech Bubble -->
+  <path d="M 18,22 L 40,22 C 43.5,22 46,24.5 46,28 L 46,36 C 46,39.5 43.5,42 40,42 L 27,42 L 21,47 L 22,42 L 18,42 C 14.5,42 12,39.5 12,36 L 12,28 C 12,24.5 14.5,22 18,22 Z" fill="url(#bubbleGrad)" filter="url(#faqShadow)" />
+
+  <!-- AI Sparkle Star / Query Assistance Spark -->
+  <path d="M 29,26 C 29,29.5 31.5,32 35,32 C 31.5,32 29,34.5 29,38 C 29,34.5 26.5,32 23,32 C 26.5,32 29,29.5 29,26 Z" fill="#6366F1" />
+  <circle cx="38" cy="27" r="1.5" fill="#38BDF8" />
+  <circle cx="21" cy="36" r="1" fill="#818CF8" />
+</svg>

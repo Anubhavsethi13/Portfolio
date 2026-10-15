@@ -12,11 +12,14 @@ node_modules/
 
 # Local tooling and generated artifacts
 .agents/
+.claude/
 .impeccable/
 temp_impeccable/
 tmp/
 /test-results/
 /playwright-report/
+# Byte-identical archive of docs/V2_*.md
+/docs.zip
 
 # Private résumé originals
 /resume/*.pdf
